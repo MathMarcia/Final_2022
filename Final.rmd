@@ -18,13 +18,72 @@ FinalDat <-read.csv(file="final.csv",header=TRUE)
 FinalData <- FinalDat  %>% select(-one_of("X"))
 FinalData <- FinalData %>%
 mutate(across(where(is.character), as.factor))
+FinalData$treatment <- relevel(FinalData$treatment,ref="placebo")
+#FinalData$infected <- relevel(FinalData$infected,ref="OK")
+male_data = filter(FinalData, sex =="M")
+females_data = filter(FinalData, sex =="F")
+lgbtq_data = filter(FinalData, LGBTQ =="gay")
+Druggies_data = filter(FinalData, DrugUser =="yes")
 ```
+
+
+
 
 # Introduction
 
 A new  preventative vaccine (covid921) is under test in clinical trials. Given the nature of this vaccine it is suspected that the drug may exhibit different effectiveness across the variety of subpopulations tracked. Consider population subgroups by gender( guys and gals), drug use, and sexual orientation. Write a complete report that separately considers this drug for each subgroup and your recommendations as to whether people in the subgroup should take the vaccine. Structure your report in four sections each devoted to one of the four subgroups, use null and alternative hypothesis statements and correct statistical verbage when referencing p-values in conclusions.
 
+
+## Methods
+
+First the finaldata variables needed to be change from character to factor variables. I used the DPLYR code for this process. Then I added the filters  to subgroups to differentiate them individually. The purpose is to see which group should take or not take vaccine.
+
 ## Males
+
+
+```{r}
+dd2 <- male_data %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+
+
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(dd2,aes(x=infected,y=count,fill=treatment))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+
+This plot represents the male group and the comparison of the Covid921 vaccine by the vaccine takers or the placebo takers. The argument ensures that the bars for different treatments are grouped side by side for easy comparison.
+
+The plot shows that 30% took the vaccine and 69% did not.  About 4% of placebo were infected and and 2% of vaccinetakers.Placebo takers are a bit higher than vaccine takers.
+
+There are two plots. In first plot,the x-axis represents infected, whether the participants were infected with covid or they were not. The y-axis represents the count, or number of people that got covid-19 or not.
+
+In the second plot, the one above, The The left two bars of the graph are all the people that got covid. The x-axis represents whether a person got covid or not. The y-axis, however, instead of representing the number of people who got covid-19, now represents the percentage of people that got covid after taking the the placebo or taking the Vaccine.
+
+
+```{r}
+table1 <- xtabs(~infected + treatment, data= male_data)
+rowPerc(table1)
+colPerc(table1)
+```
+These numerical results show specific percentages of male that got covid-19 after taking the placebo and taking the vaccine. 
+Among the men, 30.43% got covid-19 after taking the vaccine, while the approximately 69.57% of men that were given the placebo contracted covid. The vaccine is clearly effective in preventing covid in males and it is recommended. Those who took the placebo were much more likely to contract covid
+The odds of getting covid while taking the vaccine is 1.15: 2.55. 
+
+
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+male_datafish <- fisher.test(table1)
+male_datafish
+```
+
 
 
 ## Females
