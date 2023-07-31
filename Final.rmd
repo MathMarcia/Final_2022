@@ -132,6 +132,48 @@ the first plot,the x-axis represents infected, whether the participants were inf
 
 In the first plot, the one above, The left two bars of the graph were all the people that didnt getcovid at 50%. The x-axis represents whether a person got covid or not. The y-axis, however, instead of representing the number of people who got covid-19, now represents the percentage of people that got covid after taking the placebo or taking the Vaccine.
 
+
+### Numerical
+
+```{r}
+table2 <- xtabs(~infected + treatment, data= females_data)
+rowPerc(table1)
+colPerc(table1)
+```
+
+These numerical results show specific percentages of female that got covid-19 after taking the placebo and taking the vaccine. 
+Among the female, 30% got covid-19 after taking the vaccine, while the approximately 70% female were even the placebo contracted covid. The vaccine is clearly effective in preventing covid in females is recommended. Those who took the placebo were much more likely to contract covid
+The odds of getting covid while taking the vaccine is 1.1: 2.5
+
+### Inferential
+
+```{r}
+chisq.test(table2)
+chisqtestGC(table2)
+females_datafish <- fisher.test(table2)
+females_datafish
+```
+
+Explaining the P-value= 0.0003 There is a significance effect on the vaccine. The P- value is low.
+
+
+### Effectiveness confidence Interval
+
+
+```{r}
+effect <- females_datafish$p.value/(females_datafish$p.value +1)
+effectivenessfemale = females_datafish$estimate/(females_datafish$estimate +1)*100
+print(effectivenessfemale)
+```
+```{r}
+low=(females_datafish$conf.int[1]/( females_datafish$conf.int[1] +1))*100
+hi=(females_datafish$conf.int[2]/( females_datafish$conf.int[2] +1))*100
+options(digits=2)
+```
+#### Effectiveness confidence Interval `r low` to `r hi`
+
+The ratio is 60% and is above 50% which is effective. The confidence intervals is 54.53 - 65.07. It is a 95% interval. I notice that famale is lower than male. 
+
 ## LGBTQ
 
 
