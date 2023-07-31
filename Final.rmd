@@ -217,6 +217,37 @@ These numerical results show specific percentages of lgbtq that got covid-19 aft
 Among the lgbtq, 85% got covid-19 after taking the vaccine, while the approximately 15%  of lgbtq that were given the placebo contracted covid. The vaccine is not effective in preventing covid in lgbtq is not recommended. Those who took the placebo were much less likely to contract covid
 The odds of getting covid while taking the vaccine is 0.66: 3.5
 
+### Inferential
+
+```{r}
+chisq.test(table3)
+chisqtestGC(table3)
+lgbtq_datafish <- fisher.test(table3)
+lgbtq_datafish
+```
+
+Explaining the P-value= 0.00000007 There is a significance effect on the vaccine. The P- value is low.
+
+
+### Effectiveness confidence Interval
+
+
+```{r}
+effect <- lgbtq_datafish$p.value/(lgbtq_datafish$p.value +1)
+effectivenesslgbtq = lgbtq_datafish$estimate/(lgbtq_datafish$estimate +1)*100
+print(effectivenesslgbtq)
+```
+
+```{r}
+low=(lgbtq_datafish$conf.int[1]/( lgbtq_datafish$conf.int[1] +1))*100
+hi=(lgbtq_datafish$conf.int[2]/( lgbtq_datafish$conf.int[2] +1))*100
+options(digits=2)
+```
+#### Effectiveness confidence Interval `r low` to `r hi`
+
+The ratio is 15% and is below 50% which is not effective. The confidence intervals are 26.56 - 7.60. It is a 95% interval.
+
+
 ## Druggies
 
 
