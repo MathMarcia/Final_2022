@@ -305,9 +305,26 @@ Druggies_datafish
 Explaining the P-value= 0.000000003 There is a significance effect on the vaccine. The P- value is  very low.
 
 
+### Effectiveness confidence Interval
 
 
+```{r}
+effect <- Druggies_datafish$p.value/(Druggies_datafish$p.value +1)
+effectivenessDruggies = Druggies_datafish$estimate/(Druggies_datafish$estimate +1)*100
+print(effectivenessDruggies)
+```
 
+```{r}
+low=(Druggies_datafish$conf.int[1]/( Druggies_datafish$conf.int[1] +1))*100
+hi=(Druggies_datafish$conf.int[2]/( Druggies_datafish$conf.int[2] +1))*100
+options(digits=2)
+```
+#### Effectiveness confidence Interval `r low` to `r hi`
+
+
+The ratio is 11% and is below 50% which is not effective. The confidence intervals are 21.82 -  4.59. It is a 95% interval.
 
 
 # Overall Results and Conclusions
+
+
