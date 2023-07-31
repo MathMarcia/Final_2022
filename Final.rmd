@@ -202,7 +202,20 @@ The second plot shows that 80% of the people that took the vaccine got infected 
 
 The first plot,the x-axis represents infected, whether the participants were infected with covid or they were not. The y-axis represents the count, or number of people that got covid-19 or not.
 
-In the first plot, the one above, The left two bars of the graph were all the people that didnt getcovid at 50%. The x-axis represents whether a person got covid or not. The y-axis, however, instead of representing the number of people who got covid-19, now represents the percentage of people that got covid after taking the placebo or taking the Vaccine
+In the first plot, the one above, The left two bars of the graph were all the people that didnt getcovid at 50%. The x-axis represents whether a person got covid or not. The y-axis, however, instead of representing the number of people who got covid-19, now represents the percentage of people that got covid after taking the placebo or taking the Vaccine.
+
+
+### Numerical
+
+```{r}
+table3 <- xtabs(~infected + treatment, data= lgbtq_data)
+rowPerc(table3)
+colPerc(table3)
+```
+
+These numerical results show specific percentages of lgbtq that got covid-19 after taking the placebo and taking the vaccine. 
+Among the lgbtq, 85% got covid-19 after taking the vaccine, while the approximately 15%  of lgbtq that were given the placebo contracted covid. The vaccine is not effective in preventing covid in lgbtq is not recommended. Those who took the placebo were much less likely to contract covid
+The odds of getting covid while taking the vaccine is 0.66: 3.5
 
 ## Druggies
 
