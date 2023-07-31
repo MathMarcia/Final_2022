@@ -40,6 +40,7 @@ First the finaldata variables needed to be change from character to factor varia
 
 ## Males
 
+### Graphical
 
 ```{r}
 dd2 <- male_data %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
@@ -59,12 +60,14 @@ basicCC + geom_bar(stat="identity", position = "dodge")
 
 This plot represents the male group and the comparison of the Covid921 vaccine by the vaccine takers or the placebo takers. The argument ensures that the bars for different treatments are grouped side by side for easy comparison.
 
-The plot shows that 30% took the vaccine and 69% did not.  About 4% of placebo were infected and and 2% of vaccinetakers.Placebo takers are a bit higher than vaccine takers.
+The plot shows that 30% took the vaccinegot infected and 69% that received the placebo got infected .Placebo takers are a bit higher than vaccine takers.
 
 There are two plots. In first plot,the x-axis represents infected, whether the participants were infected with covid or they were not. The y-axis represents the count, or number of people that got covid-19 or not.
 
-In the second plot, the one above, The The left two bars of the graph are all the people that got covid. The x-axis represents whether a person got covid or not. The y-axis, however, instead of representing the number of people who got covid-19, now represents the percentage of people that got covid after taking the the placebo or taking the Vaccine.
+In the second plot, the one above, The left two bars of the graph were all the people that didnt getcovid. The x-axis represents whether a person got covid or not. The y-axis, however, instead of representing the number of people who got covid-19, now represents the percentage of people that got covid after taking the the placebo or taking the Vaccine.
 
+
+### Numerical
 
 ```{r}
 table1 <- xtabs(~infected + treatment, data= male_data)
@@ -75,7 +78,7 @@ These numerical results show specific percentages of male that got covid-19 afte
 Among the men, 30.43% got covid-19 after taking the vaccine, while the approximately 69.57% of men that were given the placebo contracted covid. The vaccine is clearly effective in preventing covid in males and it is recommended. Those who took the placebo were much more likely to contract covid
 The odds of getting covid while taking the vaccine is 1.15: 2.55. 
 
-
+### Inferential
 
 ```{r}
 chisq.test(table1)
@@ -83,9 +86,26 @@ chisqtestGC(table1)
 male_datafish <- fisher.test(table1)
 male_datafish
 ```
+Explain the P-value= 0.0000000000001098 There is a significance effect on the vaccine. The P- value is very low.
+
+### Effectiveness confidence Interval
 
 
+```{r}
+effect <- male_datafish$p.value/(male_datafish$p.value +1)
+effectivenessmale = male_datafish$estimate/(male_datafish$estimate +1)*100
+print(effectivenessmale)
+```
 
+```{r}
+low=(male_datafish$conf.int[1]/(male_datafish$conf.int[1] +1))*100
+hi=(male_datafish$conf.int[2]/(male_datafish$conf.int[2] +1))*100
+options(digits=2)
+```
+
+#### Effectiveness confidence Interval `r low` to `r hi`
+
+The ratio is 69% and is above 50% which is effective. The confidence intervals is 64.26 - 73.75. It is a 95% interval. 
 ## Females
 
 
