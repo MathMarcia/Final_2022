@@ -124,6 +124,13 @@ basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment))
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
 
+This plot represents the female group. I am comparing Covid921 vaccine by the vaccine takers or the placebo takers. The argument ensures that the bars for different treatments are grouped side by side for easy comparison.
+
+The second plot shows that 40% of th people that took the vaccine got infected and 60% that received the placebo got infected .Placebo takers are a bit higher than vaccine takers.
+
+the first plot,the x-axis represents infected, whether the participants were infected with covid or they were not. The y-axis represents the count, or number of people that got covid-19 or not.
+
+In the first plot, the one above, The left two bars of the graph were all the people that didnt getcovid at 50%. The x-axis represents whether a person got covid or not. The y-axis, however, instead of representing the number of people who got covid-19, now represents the percentage of people that got covid after taking the placebo or taking the Vaccine.
 
 ## LGBTQ
 
