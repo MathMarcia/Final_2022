@@ -292,4 +292,22 @@ These numerical results show specific percentages of druggies that got covid-19 
 Among the druggies, 88% got covid-19 after taking the vaccine, while the approximately 12%  of druggies that were given the placebo contracted covid. The vaccine is not effective in preventing covid in druggies is not recommended. Those who took the placebo were less likely to contract covid
 The odds of getting covid while taking the vaccine is 0.4 : 3.1
 
+
+### Inferential
+
+```{r}
+chisq.test(table4)
+chisqtestGC(table4)
+Druggies_datafish <- fisher.test(table4)
+Druggies_datafish
+```
+
+Explaining the P-value= 0.000000003 There is a significance effect on the vaccine. The P- value is  very low.
+
+
+
+
+
+
+
 # Overall Results and Conclusions
