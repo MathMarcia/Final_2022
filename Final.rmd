@@ -319,6 +319,9 @@ low=(Druggies_datafish$conf.int[1]/( Druggies_datafish$conf.int[1] +1))*100
 hi=(Druggies_datafish$conf.int[2]/( Druggies_datafish$conf.int[2] +1))*100
 options(digits=2)
 ```
+
+
+
 #### Effectiveness confidence Interval `r low` to `r hi`
 
 
@@ -326,5 +329,17 @@ The ratio is 11% and is below 50% which is not effective. The confidence interva
 
 
 # Overall Results and Conclusions
+
+The covid-19 vaccine was not effective in protecting lgbtq and druggies against the contraction of the disease. The covid-19 effectiveness was `r effectivenesslgbtq`, for lgbtq `r effectivenessDruggies`
+for druggies.
+The covid-19 vaccine was highly successful in protecting male and female  against covid-19.The covid-19 effectiveness was `r effectivenessmale`, `r effectivenessfemale` .Male were protected the most with this particular vaccine.
+The covid-19 vaccine was not effective in treating people who identified as lgbtq. The individuals who identified as lgbtq and took the vaccine were 80%  likely to get covid-19 than those taking the placebo.The covid-19 effectiveness was `r effectivenesslgbtq` for lgbtq individuals.
+The individuals that were druggies were not effectively protected by the vaccine in the same percentage as the lgbtq. 
+The druggies that took the vaccine were 88% likely to get covid-19 than those taking the placebo.The covid-19 effectiveness was `r effectivenessDruggies` for druggies.
+
+If you are a druggies or identify as lgbtq it is not recommended to receive the vaccine. However, if you are a male or a female, the vaccine was reported to have been effective.
+The null that there is no difference in taking the vaccine can be accepted to the categories including lgbtq and druggies individuals. the alternative, that the vaccine works and is effective, can be accepted for the female and male.
+
+
 
 
