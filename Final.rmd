@@ -106,7 +106,9 @@ options(digits=2)
 #### Effectiveness confidence Interval `r low` to `r hi`
 
 The ratio is 69% and is above 50% which is effective. The confidence intervals is 64.26 - 73.75. It is a 95% interval. 
+
 ## Females
+
 ### Graphical
 
 ```{r}
