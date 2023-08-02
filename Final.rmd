@@ -86,7 +86,11 @@ chisqtestGC(table1)
 male_datafish <- fisher.test(table1)
 male_datafish
 ```
-Explain the P-value= 0.0000000000001098 There is a significance effect on the vaccine. The P- value is very low.
+
+
+The information to play close attention to among all of these results is the output of the Fisher's test. The p-value displayed above is extremely small at 0.00000000000001098. This is an extremely tiny number. seeing this number means that these results are not likely to occur by chance and so the null hypothesis can be rejected in favor of the alternative.
+The Fishers's Test illustrates that the odds ratio is 2.24
+
 
 ### Effectiveness confidence Interval
 
@@ -105,10 +109,11 @@ options(digits=2)
 
 #### Effectiveness confidence Interval `r low` to `r hi`
 
-The ratio is 69% and is above 50% which is effective. The confidence intervals is 64.26 - 73.75. It is a 95% interval. 
 
 
+Above is the effectiveness for the covid-19 vaccine for male. If the effectiveness is above 50% that means that the vaccine is effective. Based on the interval seen above, we cn conclude that the vaccine is ineffective in protecting males from getting covid-19. 
 
+The odds ratio is approximately how effective the vaccine is. The odds ratio for the males can be seen above as 69%. The effectiveness confidence interval for the males is  64.26 - 73.75. It is a 95% interval.
 
 ## Females
 
@@ -161,6 +166,8 @@ females_datafish
 
 Explaining the P-value= 0.0003 There is a significance effect on the vaccine. The P- value is low.
 
+The information to play close attention to among all of these results is the output of the Fisher's test. The p-value displayed above is extremely small at 0.0003. This is a small number. seeing this number means that these results are not likely to occur by chance and so the null hypothesis can be rejected in favor of the alternative.
+The Fishers's Test illustrates that the odds ratio is 1.5
 
 ### Effectiveness confidence Interval
 
@@ -177,10 +184,10 @@ options(digits=2)
 ```
 #### Effectiveness confidence Interval `r low` to `r hi`
 
-The ratio is 60% and is above 50% which is effective. The confidence intervals is 54.53 - 65.07. It is a 95% interval. I notice that famale is lower than male. 
 
+Above is the effectiveness for the covid-19 vaccine for female. If the effectiveness is above 50% that means that the vaccine is effective. Based on the interval seen above, we cn conclude that the vaccine is ineffective in protecting females from getting covid-19. 
 
-
+The odds ratio is approximately how effective the vaccine is. The odds ratio for the females can be seen above as 60%. The effectiveness confidence interval for the males is 54.53 - 65.07. It is a 95% interval. I notice that female is lower than male.
 
 ## LGBTQ
 
