@@ -28,7 +28,6 @@ Druggies_data = filter(FinalData, DrugUser =="yes")
 
 
 
-
 # Introduction
 
 A new  preventative vaccine (covid921) is under test in clinical trials. Given the nature of this vaccine it is suspected that the drug may exhibit different effectiveness across the variety of subpopulations tracked. Consider population subgroups by gender( guys and gals), drug use, and sexual orientation. Write a complete report that separately considers this drug for each subgroup and your recommendations as to whether people in the subgroup should take the vaccine. Structure your report in four sections each devoted to one of the four subgroups, use null and alternative hypothesis statements and correct statistical verbage when referencing p-values in conclusions.
@@ -37,6 +36,7 @@ A new  preventative vaccine (covid921) is under test in clinical trials. Given t
 ## Methods
 
 First the finaldata variables needed to be change from character to factor variables. I used the DPLYR code for this process. Then I added the filters  to subgroups to differentiate them individually. The purpose is to see which group should take or not take vaccine.
+
 
 ## Males
 
@@ -78,6 +78,7 @@ These numerical results show specific percentages of male that got covid-19 afte
 Among the men, 30.43% got covid-19 after taking the vaccine, while the approximately 69.57% of men that were given the placebo contracted covid. The vaccine is clearly effective in preventing covid in males and it is recommended. Those who took the placebo were much more likely to contract covid
 The odds of getting covid while taking the vaccine is 1.15: 2.55. 
 
+
 ### Inferential
 
 ```{r}
@@ -107,13 +108,14 @@ hi=(male_datafish$conf.int[2]/(male_datafish$conf.int[2] +1))*100
 options(digits=2)
 ```
 
+
 #### Effectiveness confidence Interval `r low` to `r hi`
 
 
-
-Above is the effectiveness for the covid-19 vaccine for male. If the effectiveness is above 50% that means that the vaccine is effective. Based on the interval seen above, we cn conclude that the vaccine is ineffective in protecting males from getting covid-19. 
+Above is the effectiveness for the covid-19 vaccine for male. If the effectiveness is above 50% that means that the vaccine is effective. Based on the interval seen above, we can conclude that the vaccine is ineffective in protecting males from getting covid-19. 
 
 The odds ratio is approximately how effective the vaccine is. The odds ratio for the males can be seen above as 69%. The effectiveness confidence interval for the males is  64.26 - 73.75. It is a 95% interval.
+
 
 ## Females
 
@@ -133,6 +135,7 @@ basicC + geom_bar(stat="identity",position="dodge")
 basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment)) 
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
+
 
 This plot represents the female group. I am comparing Covid921 vaccine by the vaccine takers or the placebo takers. The argument ensures that the bars for different treatments are grouped side by side for easy comparison.
 
@@ -164,9 +167,8 @@ females_datafish <- fisher.test(table2)
 females_datafish
 ```
 
-Explaining the P-value= 0.0003 There is a significance effect on the vaccine. The P- value is low.
 
-The information to play close attention to among all of these results is the output of the Fisher's test. The p-value displayed above is extremely small at 0.0003. This is a small number. seeing this number means that these results are not likely to occur by chance and so the null hypothesis can be rejected in favor of the alternative.
+The information to play close attention to among all of these results is the output of the Fisher's test. The p-value displayed above is small at 0.0003. This is a small number. seeing this number means that these results are not likely to occur by chance and so the null hypothesis can be rejected in favor of the alternative.
 The Fishers's Test illustrates that the odds ratio is 1.5
 
 ### Effectiveness confidence Interval
@@ -182,12 +184,14 @@ low=(females_datafish$conf.int[1]/( females_datafish$conf.int[1] +1))*100
 hi=(females_datafish$conf.int[2]/( females_datafish$conf.int[2] +1))*100
 options(digits=2)
 ```
+
+
 #### Effectiveness confidence Interval `r low` to `r hi`
 
+Above is the effectiveness for the covid-19 vaccine for female. If the effectiveness is above 50% that means that the vaccine is effective. Based on the interval seen above, we can conclude that the vaccine is ineffective in protecting females from getting covid-19. 
 
-Above is the effectiveness for the covid-19 vaccine for female. If the effectiveness is above 50% that means that the vaccine is effective. Based on the interval seen above, we cn conclude that the vaccine is ineffective in protecting females from getting covid-19. 
+The odds ratio is approximately how effective the vaccine is. The odds ratio for the females can be seen above as 60%. The effectiveness confidence interval for the females is 54.53 - 65.07. It is a 95% interval. I notice that female is lower than male.
 
-The odds ratio is approximately how effective the vaccine is. The odds ratio for the females can be seen above as 60%. The effectiveness confidence interval for the males is 54.53 - 65.07. It is a 95% interval. I notice that female is lower than male.
 
 ## LGBTQ
 
@@ -238,7 +242,9 @@ lgbtq_datafish <- fisher.test(table3)
 lgbtq_datafish
 ```
 
-Explaining the P-value= 0.00000007 There is a significance effect on the vaccine. The P- value is low.
+
+The information to play close attention to, among all of these results is the output of the Fisher's test. The p-value displayed above is extremely small at 0.00000007. This is a small number. seeing this number means that these results are not likely to occur by chance and so the null hypothesis can be rejected in favor of the alternative.
+The Fishers's Test illustrates that the odds ratio is 0.18
 
 
 ### Effectiveness confidence Interval
@@ -255,9 +261,14 @@ low=(lgbtq_datafish$conf.int[1]/( lgbtq_datafish$conf.int[1] +1))*100
 hi=(lgbtq_datafish$conf.int[2]/( lgbtq_datafish$conf.int[2] +1))*100
 options(digits=2)
 ```
+
+
 #### Effectiveness confidence Interval `r low` to `r hi`
 
-The ratio is 15% and is below 50% which is not effective. The confidence intervals are 26.56 -  7.60. It is a 95% interval.
+Above is the effectiveness for the covid-19 vaccine for lgbtq. If the effectiveness is above 50% that means that the vaccine is effective. Based on the interval seen above, we can conclude that the vaccine is ineffective in protecting lgbtq from getting covid-19. 
+
+The odds ratio is approximately how effective the vaccine is. The odds ratio for the lgbtq can be seen above as 15%. The effectiveness confidence interval for the lgbtq is 26.56 to  7.60. It is a 95% interval.I notice this is lower than female and male.
+
 
 
 ## Druggies
@@ -287,6 +298,7 @@ The first plot,the x-axis represents infected, whether the participants were inf
 
 In the first plot, the one above, The left two bars of the graph were all the people that didn't get covid at 50%. The x-axis represents whether a person got covid or not. The y-axis, however, instead of representing the number of people who got covid-19, now represents the percentage of people that got covid after taking the placebo or taking the Vaccine.
 
+
 ### Numerical
 
 ```{r}
@@ -309,7 +321,9 @@ Druggies_datafish <- fisher.test(table4)
 Druggies_datafish
 ```
 
-Explaining the P-value= 0.000000003 There is a significance effect on the vaccine. The P- value is  very low.
+
+The information to play close attention to, among all of these results is the output of the Fisher's test. The p-value displayed above is extremely small at 0.000000003. This is an extremely small number. seeing this number means that these results are not likely to occur by chance and so the null hypothesis can be rejected in favor of the alternative.
+The Fishers's Test illustrates that the odds ratio is 0.13 for druggies.
 
 
 ### Effectiveness confidence Interval
@@ -332,7 +346,10 @@ options(digits=2)
 #### Effectiveness confidence Interval `r low` to `r hi`
 
 
-The ratio is 11% and is below 50% which is not effective. The confidence intervals are 21.82 -  4.59. It is a 95% interval.
+Above is the effectiveness for the covid-19 vaccine for druggies. If the effectiveness is above 50% that means that the vaccine is effective. Based on the interval seen above, we can conclude that the vaccine is ineffective in protecting druggies from getting covid-19. 
+
+The odds ratio is approximately how effective the vaccine is. The odds ratio for the druggies can be seen above as 11%. The effectiveness confidence interval for the druggies is 21.82 -  4.59. It is a 95% interval.It continues to decrease because is lower than male,female and lgbtq.
+
 
 
 # Overall Results and Conclusions
